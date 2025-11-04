@@ -1,6 +1,6 @@
 # 💼 Payroll Management System — Oracle Database Project
 
-**Author:** Arabsha  
+**Author:** Arabsha 
 **Date:** October 2025  
 **Project Type:** Self Project  
 **Tools & Technologies:** Oracle SQL, PL/SQL, SQL Developer  

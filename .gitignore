@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+*.code-workspace
+.idea/
+
+# Logs and runtime
+*.log
+
+# Oracle wallet / config (never push credentials)
+wallet/
+*.wallet
+.env
+*.ora
+
+# macOS
+._*
+
+# other
+node_modules/

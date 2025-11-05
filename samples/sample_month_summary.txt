@@ -1,0 +1,7 @@
+--- Monthly Payroll Summary for 2025-10 ---
+ID:101 | John Louis | Net: 30996.77
+ID:102 | Divya Bharati | Net: 37020.97
+ID:103 | Khaja Mohideen | Net: 40438.71
+ID:104 | Padma Shree | Net: 43019.35
+ID:105 | Shyam Kumar | Net: 37020.97
+-------------------------------------------

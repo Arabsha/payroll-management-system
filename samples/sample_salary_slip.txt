@@ -1,0 +1,7 @@
+--- Salary Slip ---
+Employee : John Louis (101)
+Month    : 2025-10
+Gross    : 39000
+Deductions: 8003.23
+Net Salary: 30996.77
+Generated On: 02-NOV-25

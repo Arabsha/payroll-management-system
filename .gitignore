@@ -1,0 +1,34 @@
+# Ignore Oracle SQL Developer specific files
+*.log
+*.tmp
+*.bak
+*.dmp
+*.dat
+*.csv
+*.rpt
+
+# Ignore compiled or generated scripts
+*.class
+*.exe
+*.o
+*.obj
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore temporary or backup files
+~$*
+*.swp
+*.swo
+*.bak
+*.old
+
+# Ignore node or IDE folders if opened in VSCode
+node_modules/
+.vscode/
+.idea/
+
+# Ignore ZIP archives
+*.zip

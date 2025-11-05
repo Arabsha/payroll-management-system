@@ -1,23 +1,34 @@
-# OS
+# Ignore Oracle SQL Developer specific files
+*.log
+*.tmp
+*.bak
+*.dmp
+*.dat
+*.csv
+*.rpt
+
+# Ignore compiled or generated scripts
+*.class
+*.exe
+*.o
+*.obj
+
+# Ignore operating system files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# IDEs
+# Ignore temporary or backup files
+~$*
+*.swp
+*.swo
+*.bak
+*.old
+
+# Ignore node or IDE folders if opened in VSCode
+node_modules/
 .vscode/
-*.code-workspace
 .idea/
 
-# Logs and runtime
-*.log
-
-# Oracle wallet / config (never push credentials)
-wallet/
-*.wallet
-.env
-*.ora
-
-# macOS
-._*
-
-# other
-node_modules/
+# Ignore ZIP archives
+*.zip

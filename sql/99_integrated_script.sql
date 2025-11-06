@@ -206,47 +206,72 @@ BEGIN
 END;
 /
 -- 3.3 Procedure: view_salary_slip
-CREATE OR REPLACE PROCEDURE view_salary_slip (
+CREATE OR REPLACE PROCEDURE view_salary_slip(
     p_emp_id IN NUMBER,
-    p_month_year IN VARCHAR2
-) AS
-    v_name employees.emp_name%TYPE;
-    v_gross payroll.gross_salary%TYPE;
-    v_ded  payroll.deductions%TYPE;
-    v_net  payroll.net_salary%TYPE;
-    v_date payroll.generated_on%TYPE;
+    p_month  IN VARCHAR2
+)
+IS
+    v_emp_name    employees.emp_name%TYPE;
+    v_gross       payroll.gross_salary%TYPE;
+    v_deductions  payroll.deductions%TYPE;
+    v_net         payroll.net_salary%TYPE;
+    v_gen_date    DATE;
 BEGIN
-    SELECT e.emp_name, p.gross_salary, p.deductions, p.net_salary, p.generated_on
-    INTO v_name, v_gross, v_ded, v_net, v_date
-    FROM payroll p JOIN employees e ON e.emp_id = p.emp_id
-    WHERE p.emp_id = p_emp_id AND p.month_year = p_month_year;
+    SELECT e.emp_name, p.gross_salary, p.deductions, p.net_salary, SYSDATE
+      INTO v_emp_name, v_gross, v_deductions, v_net, v_gen_date
+      FROM employees e
+      JOIN payroll p ON e.emp_id = p.emp_id
+     WHERE p.emp_id = p_emp_id
+       AND p.month_year = p_month;
 
     DBMS_OUTPUT.PUT_LINE('--- Salary Slip ---');
-    DBMS_OUTPUT.PUT_LINE('Employee : '||v_name||' ('||p_emp_id||')');
-    DBMS_OUTPUT.PUT_LINE('Month    : '||p_month_year);
-    DBMS_OUTPUT.PUT_LINE('Gross    : '||v_gross);
-    DBMS_OUTPUT.PUT_LINE('Deductions: '||v_ded);
-    DBMS_OUTPUT.PUT_LINE('Net Salary: '||v_net);
-    DBMS_OUTPUT.PUT_LINE('Generated On: '||v_date);
+    DBMS_OUTPUT.PUT_LINE('Employee     : ' || v_emp_name || ' (' || p_emp_id || ')');
+    DBMS_OUTPUT.PUT_LINE('Month        : ' || p_month);
+    DBMS_OUTPUT.PUT_LINE('Gross Salary : ' || TO_CHAR(v_gross, '999,999.99'));
+    DBMS_OUTPUT.PUT_LINE('Deductions   : ' || TO_CHAR(v_deductions, '999,999.99'));
+    DBMS_OUTPUT.PUT_LINE('Net Salary   : ' || TO_CHAR(v_net, '999,999.99'));
+    DBMS_OUTPUT.PUT_LINE('Generated On : ' || TO_CHAR(v_gen_date, 'DD-MON-YY'));
+
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No payroll found for '||p_emp_id||' and month '||p_month_year);
+        DBMS_OUTPUT.PUT_LINE('No record found for Employee ID: ' || p_emp_id || ' and Month: ' || p_month);
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
 /
 -- 3.4 Procedure: monthly_payroll_summary
-CREATE OR REPLACE PROCEDURE monthly_payroll_summary (
-    p_month_year IN VARCHAR2
-) AS
+CREATE OR REPLACE PROCEDURE monthly_payroll_summary(p_month IN VARCHAR2)
+IS
+  CURSOR c_pay IS
+    SELECT e.emp_id,
+           e.emp_name,
+           p.net_salary
+      FROM employees e
+      JOIN payroll p
+        ON e.emp_id = p.emp_id
+     WHERE p.month_year = p_month;
+
+  v_total_expense NUMBER := 0;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('--- Monthly Payroll Summary for '||p_month_year||' ---');
-    FOR rec IN (
-        SELECT e.emp_id, e.emp_name, p.net_salary
-        FROM payroll p JOIN employees e ON e.emp_id = p.emp_id
-        WHERE p.month_year = p_month_year
-        ORDER BY e.emp_id
-    ) LOOP
-        DBMS_OUTPUT.PUT_LINE('ID:'||rec.emp_id||' | '||rec.emp_name||' | Net: '||rec.net_salary);
-    END LOOP;
+  DBMS_OUTPUT.PUT_LINE('--- Monthly Payroll Summary for ' || p_month || ' ---');
+
+  FOR rec IN c_pay LOOP
+    DBMS_OUTPUT.PUT_LINE(
+      'ID:' || rec.emp_id ||
+      ' | ' || rec.emp_name ||
+      ' | Net: ' || TO_CHAR(rec.net_salary, '99999.99')
+    );
+    v_total_expense := v_total_expense + rec.net_salary;
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('--------------------------------------------');
+  DBMS_OUTPUT.PUT_LINE('Total Expense (' || p_month || '): ' ||
+                       TO_CHAR(v_total_expense, '999,999.99'));
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('No payroll records found for ' || p_month);
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
 /
 -- 3.5 Function: total_salary_expense

@@ -1,7 +1,23 @@
 --- Monthly Payroll Summary for 2025-10 ---
-ID:101 | John Louis | Net: 30996.77
-ID:102 | Divya Bharati | Net: 37020.97
-ID:103 | Khaja Mohideen | Net: 40438.71
-ID:104 | Padma Shree | Net: 43019.35
-ID:105 | Shyam Kumar | Net: 37020.97
--------------------------------------------
+ID:101 | John Louis | Net:  30996.77
+ID:102 | Divya Bharati | Net:  37020.97
+ID:103 | Khaja Mohideen | Net:  40438.71
+ID:104 | Padma Shree | Net:  43019.35
+ID:105 | Shyam Kumar | Net:  37020.97
+ID:106 | Aparna Das | Net:  41791.94
+ID:107 | Vinoth Kumar | Net:  30996.77
+ID:108 | Mohammed Yusuf | Net:  56387.10
+ID:109 | Simran Kaur | Net:  35891.94
+ID:110 | Jacob Raj | Net:  37858.06
+ID:111 | Sundar venkat | Net:  33633.87
+ID:112 | Pooja Mahesh | Net:  39148.39
+ID:113 | Hari Haran | Net:  41791.94
+ID:114 | Asma Banu | Net:  30996.77
+ID:115 | Mohammed zubair | Net:  44309.68
+ID:116 | Antony Roselet | Net:  38150.00
+ID:117 | Darun Kumar | Net:  44695.16
+ID:118 | Faizal Salahuddin | Net:  31375.81
+ID:119 | Anjali Rao | Net:  43019.35
+ID:120 | Priya Singh | Net:  33900.00
+--------------------------------------------
+Total Expense (2025-10):  772,443.55

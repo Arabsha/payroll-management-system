@@ -92,7 +92,19 @@ git clone https://github.com/Arabsha/payroll-management-system.git
 cd payroll-management-system/sql
 ```
 
-### **2️⃣ Run Scripts in Oracle SQL Developer or SQL*Plus**
+### *2️⃣ Run Scripts in Oracle SQL Developer or SQL\*Plus*
+
+#### 🖥️ Option A — Using Oracle SQL Developer (Recommended)
+1. Open Oracle SQL Developer.
+2. Connect to your Oracle Database (e.g., user CORE).
+3. Open each script from the sql/ folder in this order:
+   - 01_schema.sql
+   - 02_sample_data.sql
+   - 03_procedures.sql
+   - 04_triggers.sql
+4. Press *F5 (Run Script)* to execute each file.
+
+#### 💻 Option B — Using SQL\*Plus (Command Line)
 ```bash
 sqlplus username/password@DB @01_schema.sql
 sqlplus username/password@DB @02_sample_data.sql
@@ -155,17 +167,22 @@ ID:103 | Khaja Mohideen | Net: 40438.71
 | Screenshot | Description |
 |-------------|--------------|
 | ![ER Diagram](docs/ER-diagram.png) | Entity Relationship Diagram |
+| ![Database Structure](docs/screenshots/db_structure_view.png) | Database Structure View (Actual Schema from Oracle SQL Developer) |
 | ![Salary Slip](docs/screenshots/salary_slip_output.png) | Sample Salary Slip Output |
 | ![Payroll Summary](docs/screenshots/monthly_summary_output.png) | Monthly Payroll Summary Output |
+
+> 💡 *Note:* The above screenshots showcase both the logical design (ER Diagram) and the actual database implementation (Database Structure),
+> along with sample execution outputs from Oracle SQL Developer.
 
 ---
 
 ## 🧰 Tools & Technologies Used
-- **Oracle Database 19c**
-- **Oracle SQL Developer**
-- **PL/SQL**
-- **SQL*Plus / SQLcl**
-- **Git & GitHub**
+- *Oracle Database 21c Express Edition (XE)*
+- *Oracle SQL Developer 24.3.1*
+- *PL/SQL*
+- *Git & GitHub*
+
+> Developed and tested using Oracle SQL Developer 24.3.1 connected to an Oracle Database 21c Express Edition instance for designing schema, executing SQL queries, and performing PL/SQL operations.
 
 ---
 
